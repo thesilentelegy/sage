@@ -10,16 +10,16 @@ const candidateParty = require('./routes/candidateparty');      // working
 const candidatePosition = require('./routes/candidateposition') // working
 const candidate = require('./routes/candidate')                 // working
 const user = require('./routes/user')                           // working
-const voteStore = require('./routes/votestore')                 // ...
+const voteStore = require('./routes/votestore')                 // working
 
 const app = express();
 
-app.use(logger('combined'));
-
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', routes);
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use('/api/v1/', voterBatch);
 app.use('/api/v1/', voterSection);
 app.use('/api/v1/', candidateParty);
